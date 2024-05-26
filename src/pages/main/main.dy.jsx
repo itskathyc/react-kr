@@ -10,40 +10,32 @@ import { SignUpForm } from './_components/SignUpForm';
 function Main(){
 
     // boolean타입으로 할거면 isFormState 처럼 앞에 is를 붙여야함
-    // let isFormState = true
-    let formState = "SIGN-IN"
-
-    const TAB_ARRAY = [
-        {
-            name : 'SIGN-IN', 
-            isFormSelected : formState === "SIGN-IN"
-        },
-        {
-            name : "SIGN-UP", 
-            isFormSelected : formState === "SIGN-UP"
-        }
-    ]
+    let isFormState = true
+    // let formState = "SIGN-IN"
 
     // event함수를 정의할 때 handle을 앞에 적어준다. 혹은 onClick
-    function handlePressSignTab (tabName){
-        formState = tabName
+    function handlePressSignTab (tabState){
+        isFormState = tabState
     }
 
     // 만들어야하는 컴포넌트
     // 레이아웃, 회원가입 폼, 로그인 폼, 인풋, 버튼
     // 만약에 컴포넌트 나누는게 익숙하지 않으면 => 한번에 작성했다가 이후에 나눠도 ok
     return <S.Wrapper>
-        <S.Container className={formState === true ? "SIGN-IN" : "SIGN-UP"}>
+        <S.Container className={isFormState === true ? "SIGN-IN" : "SIGN-UP"}>
             <S.Header>
-                {TAB_ARRAY.map((tab, index)=><S.Tab 
-                key={index} 
-                $isFormSelected={formState === tab.name}
-                onClick = {()=> handlePressSignTab(tab.name)}>
-                    {tab.name}
-                </S.Tab>)}
+                <S.Tab 
+                    isFormSelected={isFormState === true}
+                    onClick={() => handlePressSignTab(true)} // onClick 은 이벤트함수이다. 그래서 매개변수로 넘기고 싶은게 있다면, 익명함수/콜백함수의 모양새를 띄어야한다. 
+                    // 함수에 매개변수로 이벤트(클릭을 하면 클릭이벤트)를 받고 싶다면
+                    // onClick = {handlePressSignTab} 으로만 표현해도된다. 
+                    > SIGN IN</S.Tab>
+                <S.Tab isFormSelected={isFormState === false}
+                    onClick={()=> handlePressSignTab(false)}
+                > SIGN UP</S.Tab>
             </S.Header>
             {
-                formState === "SIGN-IN" ? <SignInForm/> : <SignUpForm />
+                isFormState === true ? <SignInForm/> : <SignUpForm />
             }
         </S.Container>
         
@@ -77,7 +69,7 @@ const Tab = styled.div`
     justify-content : center;
     align-items: center;
     // 달러 중괄호 콜백함수 : 넘겨준값을 가져올 수 있음
-    ${(props)=>props.$isformSelected && 'background-color : #e0e0e0 ;'} // &&는 앞 조건이 true면 뒤를 실행해라. 
+    ${(props)=>props.isFormSelected && 'background-color : #e0e0e0 ;'} // &&는 앞 조건이 true면 뒤를 실행해라. 
     // background-color : ${(props) => props.isSelected && "#e0e0e0"}
 
     font-size : 32px;
