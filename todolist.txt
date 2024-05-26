@@ -1,0 +1,51 @@
+라우터의 역할 : react-router-dom을 사용해서 주소를 감지하여 주소에 맞는 컴포넌트를 보여주기. 
+
+리액트 라우터돔에는 주소에 전달된 데이터를 가지고 올 수 있는 방법이 있다. - url parameter를 통해서 
+페이지와 페이지를 이동하면 변수는 사라지기 마련. 
+
+/product라는 주소에서 id를 넘기는 방법
+1. (*) useSearchParams 
+쿼리 스트링 : /product?goods=13 
+    => const [searchParams, setSearchParam] = useSearchParams()
+        searchParams.get("goods") // 하면 13이 전달됨. 
+2. useParams
+url 파라미터 : /product/13
+    =>const {id} = useParams()
+        /product/:id 로 설정하는 것, 사람들이 넘겨주는 값을 변수로 받아서 사용하려고 하는 것
+
+** 리액트 라우터 돔 
+1. 데이터를 주소를 통해 전달할 수 있다. 
+2. 리액트 라우터 돔은 단순하게 url을 맵핑해주는 역할만 하는 것이 아니라 주소를 다루는 다양한 함수를 지원한다. 
+
+오늘의 LO
+1. url-parameter
+2. navigation
+3. styled-component
+
+번들(bundle)
+-> 너저분하게 분리된 리소스들을 특정기준으로 분리하여 사용자에게 화면이 보여지는 시간을 감소하는 작업
+-> 트리쉐이킹 : 사용하지 않는 불필요한 코드는 제거하고 필요한 코드들만 사용
+    bundle.js => 번들링된 결과물
+
+-----------------------
+react style sheet
+(*)1. css - in - js
+    js파일에 css문법 작성이 가능한 스타일링 방법
+    ex) styled-components, emotion, styleX
+
+    현재는 실무에서 가장 많이 사용되는 방법
+
+2. pure css / scss + (post css)
+    일반적인 css, class 구분이 어려웠음. 하지만 pos css를 사용하면 
+    app.module.css를 통해서 해당 컴포넌트에서만 사용할 수 있는 cssfmf import 
+
+3. tailwindcss / panda-css
+    모양새 : <div class="w300 h200"> ... </div>
+    따로 css를 사용하지 않고도 간결하게 사용할 수 있다. 
+    요즘에 떠오르고 있긴하나 사용하는 곳이 별로 없음. 
+
+-----------------------
+styled-component
+스타일된 컴포넌트를 생성해서 요소 대신 생성된 컴포넌트를 활용하는 방법
+const Wrapper = styled.div`css문법` 
+<Wrapper> <di> ... </div> </Wrapper>
