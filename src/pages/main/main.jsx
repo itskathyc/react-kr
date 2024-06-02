@@ -1,12 +1,12 @@
 import styled from 'styled-components';
-import  SignInForm  from './_components/SignInForm';
+import { SignInForm } from './_components/SignInForm';
 import { SignUpForm } from './_components/SignUpForm';
 // arrow version
 // const Main = () => {
 //     return <div> :) </div>
 // }
 
-// function version
+// funciton version
 function Main(){
 
     // boolean타입으로 할거면 isFormState 처럼 앞에 is를 붙여야함
@@ -79,7 +79,7 @@ const Tab = styled.div`
     justify-content : center;
     align-items: center;
     // 달러 중괄호 콜백함수 : 넘겨준값을 가져올 수 있음
-    ${(props)=>props.$isFormSelected && 'background-color : #e0e0e0 ;'} // &&는 앞 조건이 true면 뒤를 실행해라. 
+    ${(props)=>props.$isformSelected && 'background-color : #e0e0e0 ;'} // &&는 앞 조건이 true면 뒤를 실행해라. 
     // background-color : ${(props) => props.isSelected && "#e0e0e0"}
 
     font-size : 32px;
@@ -104,5 +104,5 @@ const S = {
     Wrapper, // Wrapper : Wrapper
     Container,
     Header, 
-    Tab,
+    Tab
 }

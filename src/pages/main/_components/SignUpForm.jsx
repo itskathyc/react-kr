@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import FormInput from '../../../components/FormInput';
 import TDButton from '../../../components/Button';
 import { Form } from '../style';
@@ -69,3 +70,8 @@ export default SignUpForm
 
 
 
+=======
+export function SignUpForm(){
+    return <div> SignUpForm </div> // </div>는 안에 아무것도 없다는 것을 의미함
+}
+>>>>>>> parent of 14435ac (240601)
