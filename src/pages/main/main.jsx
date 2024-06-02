@@ -11,6 +11,8 @@ function Main(){
 
     // boolean타입으로 할거면 isFormState 처럼 앞에 is를 붙여야함
     // let isFormState = true
+    // 상위컴포넌트의 값을 하위컴포넌트에서 변경하고 싶다면
+    // Props로 전달
     let formState = "SIGN-IN"
 
     const TAB_ARRAY = [
@@ -43,7 +45,7 @@ function Main(){
                 </S.Tab>)}
             </S.Header>
             {
-                formState === "SIGN-IN" ? <SignInForm/> : <SignUpForm />
+                formState === "SIGN-IN" ? <SignInForm/> : <SignUpForm formState={formState} />
             }
         </S.Container>
         
