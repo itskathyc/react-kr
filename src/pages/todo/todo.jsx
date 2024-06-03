@@ -4,7 +4,7 @@ import TDButton from "../../components/Button";
 import AddTodoModal from "./_components/addTodoModal";
 
 
-export const Todo = () => {
+const Todo = () => {
 
     // isOpenAddTodoModal 변수가 하는 역할은 무엇일까
     // isOpenAddTodoModal이 true 일 때만 addMModal을 보여주기 위함
@@ -84,3 +84,5 @@ const S = {
   Container,
   Title
 }
+
+export default Todo

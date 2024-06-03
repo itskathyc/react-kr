@@ -1,18 +1,14 @@
 import styled from 'styled-components'
-<<<<<<< HEAD
 import FormInput from '../../../components/FormInput'
 import TDButton from '../../../components/Button'
 import {useNavigate} from 'react-router-dom'
 
-=======
->>>>>>> parent of 14435ac (240601)
 // const SignInForm = () => {
 //     return <div> :) </div>
 // }
 
 // export default SignInForm
 
-<<<<<<< HEAD
 // export function SignInForm(){
 //     return <S.Form> 
 //         <S.InputBox>
@@ -24,7 +20,7 @@ import {useNavigate} from 'react-router-dom'
 //     </S.Form>
 // }
 
-const SignInForm = () => {
+export const SignInForm = () => {
 
     // 주소 이동을 위해 사용. react-router-dom의 bundle.js를 다시 받지 않기 위해 a태그 혹은 window함수말고 이걸 사용한다. 
     const navigate = useNavigate()
@@ -55,18 +51,9 @@ const SignInForm = () => {
         <FormInput label={"비밀번호"} size={1} containerStyle={{width : 100}} name="password"/>
         {/** 스타일 가이드/디자인 시스템 -> 정해지니 값으로 컴포넌트를 빠르게 생산 */}
         <TDButton size={"medium"} variant={"secondary"} shape={"shape"}>로그인</TDButton>
-=======
-export function SignInForm(){
-    return <S.Form> 
-        <S.InputBox>
-            <S.InputLabel>
-                이메일
-            </S.InputLabel>
-            <S.Input placeholder={"email"}></S.Input>
-        </S.InputBox>
->>>>>>> parent of 14435ac (240601)
     </S.Form>
 }
+
 
 const Form = styled.form`
     background-color: "#f00000";

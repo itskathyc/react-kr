@@ -1,6 +1,6 @@
 import {createBrowserRouter} from "react-router-dom";
 
-import { Todo } from "../../pages/todo/todo";
+import  Todo  from "../../pages/todo/todo";
 import Main from "../../pages/main/main"
 // URL을 감지하여 내가 생성한 ROUTE 주소에 맞게 컴포넌트를 전달하는 역할을 한다. 
 // 감지, ROUTE 생성
