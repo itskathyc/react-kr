@@ -1,25 +1,25 @@
-import styled from 'styled-components'
-import TodoItem from './todoItem'
+import styled from "styled-components";
+import TodoItem from "./todoItem";
 
-const TodoList = ({todos}) => {
-    return (
-        <S.Wrapper>
-            {todos.map((todo)=>(
-                <todoItem todo={todo}/>
-            ))}
-        </S.Wrapper>
-    )
-}
+const TodoList = ({ todos }) => {
+  return (
+    <S.Wrapper>
+      {todos.map((todo) => (
+        <TodoItem todo={todo} />
+      ))}
+    </S.Wrapper>
+  );
+};
 
-export default TodoList 
+export default TodoList;
 
 const Wrapper = styled.div`
-    padding: 32px 0;
-    overflow: scroll;
-    &::-webkit-scrollbar {
-        display: none;
-    }
-`
+  padding: 32px 0;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
 const S = {
-    Wrapper
-}
+  Wrapper,
+};
