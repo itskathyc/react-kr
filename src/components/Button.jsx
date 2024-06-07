@@ -60,8 +60,8 @@ const variantCSS = {
     color: #fff;
   `,
   secondary: css`
-    background-color: #4b4be4;
-    color: #fff;
+    background-color: #ec88dc;
+    color: #581ec2;
   `,
   "primary-text": css`
     color: #0a540a;

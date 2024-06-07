@@ -18,7 +18,7 @@ export const fadeIn = keyframes`
     0% {
         opacity: 0;
         /* top : 50px; */
-        transform : translateY(200px); // 위에서 아래로 내려가는 효과
+        transform : translateY(200px); // 위에서 아래로 내려가는 효과, translateX는 왼쪽에서 오른쪽으로 움직이는 효과
     }
 
     100%{

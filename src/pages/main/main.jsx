@@ -1,18 +1,12 @@
 import styled from "styled-components";
 import SignInForm from "./_components/SignInForm";
 import SignUpForm from "./_components/SignUpForm";
-// arrow version
-// const Main = () => {
-//     return <div> :) </div>
-// }
+import { useState } from "react";
 
-// funciton version
 function Main() {
-  // boolean타입으로 할거면 isFormState 처럼 앞에 is를 붙여야함
-  // let isFormState = true
   // 상위컴포넌트의 값을 하위컴포넌트에서 변경하고 싶다면
   // Props로 전달
-  let formState = "SIGN-UP";
+  let formState = "SIGN-IN";
 
   const TAB_ARRAY = [
     {
@@ -31,8 +25,6 @@ function Main() {
   }
 
   // 만들어야하는 컴포넌트
-  // 레이아웃, 회원가입 폼, 로그인 폼, 인풋, 버튼
-  // 만약에 컴포넌트 나누는게 익숙하지 않으면 => 한번에 작성했다가 이후에 나눠도 ok
   return (
     <S.Wrapper>
       <LeftSide />
@@ -40,9 +32,11 @@ function Main() {
         <S.Container className={formState === true ? "SIGN-IN" : "SIGN-UP"}>
           <S.Header>
             {TAB_ARRAY.map((tab, index) => (
+              // <컴포넌트 전달={프롭스명}/>
               <S.Tab
                 key={index}
                 $isFormSelected={formState === tab.name}
+                name={tab.name}
                 onClick={() => handlePressSignTab(tab.name)}
               >
                 {tab.name}
@@ -52,7 +46,7 @@ function Main() {
           {formState === "SIGN-IN" ? (
             <SignInForm />
           ) : (
-            <SignUpForm formState={formState} />
+            <SignUpForm othername={formState} />
           )}
         </S.Container>
       </RightSide>
@@ -95,7 +89,7 @@ const Container = styled.div`
 `;
 
 const Header = styled.div`
-  background-color: #00c7ae;
+  background-color: #e3e0e4;
   display: flex;
   border-top-right-radius: 20px;
   border-top-left-radius: 20px;
@@ -108,19 +102,23 @@ const Tab = styled.div`
   justify-content: center;
   align-items: center;
   // 달러 중괄호 콜백함수 : 넘겨준값을 가져올 수 있음
-  ${(props) =>
-    props.$isformSelected &&
-    "background-color : #e61919 ;"} // &&는 앞 조건이 true면 뒤를 실행해라. 
-    // background-color : ${(props) => props.isSelected && "#e0e0e0"}
+  /* ${(props) => props.$isformSelected && "background-color : #e61919 ;"} */
+  // background-color : ${(props) => props.isSelected && "#e0e0e0"}
   font-size: 32px;
   padding: 16px;
   font-weight: bold;
   &:hover {
-    background-color: #8d2b2b;
+    background-color: #dfabd8;
     ${(props) =>
       props.$isformSelected
         ? "border-top-right-radius : 20px"
-        : "border-top-left-radius : 20px"}
+        : "border-top-left-radius : 20px"}/* ${({ isFormSelected, name }) =>
+      isFormSelected &&
+      (name === "SIGN-IN"
+        ? "border-top-right-radius : 20px"
+        : name === "SIGN-UP"
+        ? "border-top-left-radius : 20px"
+        : "")} */
   }
   /**
     div > section > p > a 에 대한 값 변경을 해야했는데, 

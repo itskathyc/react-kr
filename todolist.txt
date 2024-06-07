@@ -49,3 +49,4 @@ styled-component
 스타일된 컴포넌트를 생성해서 요소 대신 생성된 컴포넌트를 활용하는 방법
 const Wrapper = styled.div`css문법` 
 <Wrapper> <di> ... </div> </Wrapper>
+

@@ -100,17 +100,17 @@ const InputBox = styled.div`
 const Input = styled.input`
   border: 1px solid #999;
   border-radius: 4px;
-  padding-left: 16px;
+  padding-left: 100px;
   ${(props) => sizeCSS[props.size]} // css 문법
     &::placeholder {
-    text-align: center;
+    text-align: left;
   }
 `;
 
 const InputLabel = styled.label`
   position: absolute;
   left: 16px;
-  top: -6px;
+  /* top: -6px; */
   font-size: 12px;
   background-color: #fff;
   z-index: 100;

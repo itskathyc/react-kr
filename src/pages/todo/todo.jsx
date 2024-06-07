@@ -10,9 +10,10 @@ const Todo = () => {
   let isOpenAddTodoModal = false;
 
   // todos는 todoList 컴포넌트가 아니라 상위인 todo에 있어야하는 이유
-  // todos는 todo data로 이루어진 배열
 
-  // props는 상위에서 하위로만 보낼 수 있음. 그래서 todos에 해당 데이터가 있어야하는 이유는 부모 컴포넌트가 알고 있어야하기 때문이다.
+  // props는 상위에서 하위로만 보낼 수 있음.
+
+  //그래서 todos에 해당 데이터가 있어야하는 이유는 부모 컴포넌트가 알고 있어야하기 때문이다.
   // todos는 todo 목록을 보여주는 todoList 컴포넌트에도 필요하지만, todo를 추가하는 addTodoModal에도 필요하기 때문에 부모인 Todo 컴포넌트가 갖고 있어야함.
 
   // 이것이 과연 옳을까?

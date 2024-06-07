@@ -34,7 +34,7 @@ function SignUpForm({ formState }) {
     // 회원가입 때 입력했던 이메일명을 통해 ooo@naver.com 환영합니다를 alert
     // 로그인으로 변경
     // input에 value를 가지고 오는 방법
-    const email = event.target.email.value; // 위에 name : email로 줬기 때문에 target.email이 되는것
+    const email = event.target.email.value; // 아래에 name : email로 줬기 때문에 target.email이 되는것
     // 만약 name : dayoon을 했다면 target.dayoon.value로 하면됨
     alert(`${email}님 환영합니다`);
     formState = "SIGN-IN";
@@ -52,7 +52,7 @@ function SignUpForm({ formState }) {
               label={form.label}
               name={form.name}
               // A가있다면 B를 반환해라
-              // 1. form.option?.placeholder
+              // 1. form.option?.placeholder 옵션이 있다면 플레이스홀더 반환
               // 2. form.option && form.option.placeholder
               // 3. form.option ? form.option.placeholder : form.name
               // 4. form.option?.placeholder ?? form.name (삼항연산자 축약)
