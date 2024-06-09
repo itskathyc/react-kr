@@ -35,7 +35,8 @@ function Main() {
               // <컴포넌트 전달={프롭스명}/>
               <S.Tab
                 key={index}
-                $isFormSelected={formState === tab.name}
+                // $isFormSelected={formState === tab.name}
+                $tabName={tab.name}
                 name={tab.name}
                 onClick={() => handlePressSignTab(tab.name)}
               >
@@ -46,7 +47,7 @@ function Main() {
           {formState === "SIGN-IN" ? (
             <SignInForm />
           ) : (
-            <SignUpForm othername={formState} />
+            <SignUpForm formState={formState} />
           )}
         </S.Container>
       </RightSide>
@@ -110,15 +111,9 @@ const Tab = styled.div`
   &:hover {
     background-color: #dfabd8;
     ${(props) =>
-      props.$isformSelected
-        ? "border-top-right-radius : 20px"
-        : "border-top-left-radius : 20px"}/* ${({ isFormSelected, name }) =>
-      isFormSelected &&
-      (name === "SIGN-IN"
-        ? "border-top-right-radius : 20px"
-        : name === "SIGN-UP"
+      props.$tabName === "SIGN-IN"
         ? "border-top-left-radius : 20px"
-        : "")} */
+        : "border-top-right-radius : 20px"}
   }
   /**
     div > section > p > a 에 대한 값 변경을 해야했는데, 
