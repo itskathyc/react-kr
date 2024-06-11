@@ -26,7 +26,7 @@ const SIGNFORM_ARRAY = [
   },
 ];
 
-function SignUpForm({ formState }) {
+function SignUpForm({ setFormState }) {
   // 반드시 name값을 받아야한다. form은 Name을 기반으로 데이터를 받는다.
   const onSubmitSignUp = (event) => {
     // 주소변경을 막기위해
@@ -37,7 +37,8 @@ function SignUpForm({ formState }) {
     const email = event.target.email.value; // 아래에 name : email로 줬기 때문에 target.email이 되는것
     // 만약 name : dayoon을 했다면 target.dayoon.value로 하면됨
     alert(`${email}님 환영합니다`);
-    formState = "SIGN-IN";
+    // formState = "SIGN-IN";
+    setFormState("SIGN-IN");
   };
 
   // </div>는 안에 아무것도 없다는 것을 의미함

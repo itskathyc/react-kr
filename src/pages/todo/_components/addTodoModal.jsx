@@ -1,30 +1,43 @@
-import {styled} from 'styled-components';
-import {flexAlignCenter, flexCenter } from '../../../libs/styles/common';
-import TDButton from '../../../components/Button';
-import TodoList from './todoList';
+import { styled } from "styled-components";
+import { flexAlignCenter, flexCenter } from "../../../libs/styles/common";
+import TDButton from "../../../components/Button";
+import { v4 as uuid } from "uuid";
 
-const AddTodoModal = () => {
-    return(
-        <S.Modal>
-            <S.Form>
-                <S.Title>
-                    <h1>ADD TODO LIST</h1>
-                    <button type='button'> x </button>
-                </S.Title>
-                <S.Content>
-                    <input placeholder="제목을 입력해주세요"/>
-                    <textarea placeholder="할 일을 입력해주세요"/>
-                </S.Content>
-                <TDButton 
-                    variant={'primary'}                
-                    size={'full'}
-                >
-                    ADD
-                </TDButton>
-            </S.Form>
-        </S.Modal>
-    )
-}
+// props로 함수도 전달가능
+const AddTodoModal = ({ setIsOpenAddTodoModal, todos, setTodos }) => {
+  const onPressAddTodo = (event) => {
+    event.preventDefault(); // 이걸안하면 주소에 ?가 생기면서 주소를 이동시켜버림
+    // setTodos를 통해 todos에 값을 추가해준다.
+    const newTodo = {
+      id: uuid(),
+      title: event.target.title.value,
+      content: event.target.content.value,
+      state: false,
+    };
+    setTodos([...todos, newTodo]);
+    setIsOpenAddTodoModal(false);
+  };
+
+  return (
+    <S.Modal>
+      <S.Form onSubmit={onPressAddTodo}>
+        <S.Title>
+          <h1>ADD TODO LIST</h1>
+          <button type="button" onClick={() => setIsOpenAddTodoModal(false)}>
+            x
+          </button>
+        </S.Title>
+        <S.Content>
+          <input name="title" placeholder="제목을 입력해주세요" />
+          <textarea name="content" placeholder="할 일을 입력해주세요" />
+        </S.Content>
+        <TDButton variant={"primary"} size={"full"}>
+          ADD
+        </TDButton>
+      </S.Form>
+    </S.Modal>
+  );
+};
 
 export default AddTodoModal;
 
@@ -43,7 +56,7 @@ const Form = styled.form`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: ${({ theme }) => theme.colors.white};
+  background-color: #ffffff;
   border-radius: 8px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   padding: 32px;
