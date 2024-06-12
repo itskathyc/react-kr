@@ -3,8 +3,7 @@
 import { flexAlignCenter } from "../../../libs/styles/common";
 import styled from "styled-components";
 
-const TodoItem = ({ todo, onClickDeleteTodo }) => {
-
+const TodoItem = ({ todo }) => {
   return (
     <S.Wrapper state={todo.state}>
       <S.Header>
@@ -14,7 +13,7 @@ const TodoItem = ({ todo, onClickDeleteTodo }) => {
         </div>
         <div>
           <button>수정</button>
-          <button onClick={onClickDeleteTodo({todoId : todo.id})}>삭제</button>
+          <button>삭제</button>
         </div>
       </S.Header>
       <S.Content state={todo.state}>{todo.content}</S.Content>

@@ -35,7 +35,7 @@ const Todo = () => {
       <S.Wrapper>
         <S.Container>
           <S.Title>TODOLIST</S.Title>
-          <TodoList todos={todos} />
+          <TodoList todos={todos} setTodo={setTodos}/>
           <TDButton
             size={"full"}
             variant={"primary"}
