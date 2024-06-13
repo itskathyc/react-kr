@@ -3,7 +3,8 @@
 import { flexAlignCenter } from "../../../libs/styles/common";
 import styled from "styled-components";
 
-const TodoItem = ({ todo }) => {
+
+const TodoItem = ({ todo, setTodo }) => {
   return (
     <S.Wrapper state={todo.state}>
       <S.Header>
@@ -12,7 +13,7 @@ const TodoItem = ({ todo }) => {
           {todo.title}
         </div>
         <div>
-          <button>수정</button>
+          <button onclick={}>수정</button>
           <button>삭제</button>
         </div>
       </S.Header>

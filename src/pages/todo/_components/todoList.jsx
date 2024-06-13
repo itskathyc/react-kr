@@ -1,11 +1,13 @@
 import styled from "styled-components";
 import TodoItem from "./todoItem";
 
-const TodoList = ({ todos }) => {
+const TodoList = ({ todos, deleteTodo }) => {
+  const deleteTodo = [...todos];
+
   return (
     <S.Wrapper>
       {todos.map((todo) => (
-        <TodoItem todo={todo} />
+        <TodoItem todo={todo} deleteTodo={deleteTodo} />
       ))}
     </S.Wrapper>
   );
