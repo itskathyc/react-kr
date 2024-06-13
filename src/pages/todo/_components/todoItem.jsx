@@ -1,23 +1,56 @@
 // 강사님은 이 컴포넌트/파일명을 OneTodo로 하셨음
 
 import { flexAlignCenter } from "../../../libs/styles/common";
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
-const TodoItem = ({ todo, onClickDeleteTodo }) => {
+const TodoItem = ({ todo, deleteTodo }) => {
+
+  function onClickChangeState({newState}){
+    console.log(newState)
+  }
+
+  function initialState({initialState}){
+    console.log(initialState)
+    switch(initialState){
+      case 1 : return "[시작전]";
+    break;
+      case 2: return "[진행중]";
+    break;
+      case 3: return "[완료]"
+    break;
+   }}
+
+  function onClickDeleteTodo({todos, setTodos}){
+    setTodos(todos)
+   }
 
   return (
     <S.Wrapper state={todo.state}>
       <S.Header>
         <div>
-          {todo.state ? "완료" : "미완료"}
+          {initialState({initialState : todo.state})}
           {todo.title}
         </div>
         <div>
-          <button>수정</button>
-          <button onClick={onClickDeleteTodo({todoId : todo.id})}>삭제</button>
+          <button onClick={onClickDeleteTodo}>수정</button>
+          <button>삭제</button>
         </div>
       </S.Header>
       <S.Content state={todo.state}>{todo.content}</S.Content>
+      <S.ButtonContent>
+      <div>
+        <button onClick={onClickChangeState({newState : 1})}>
+          시작전
+        </button>
+        <button onClick={onClickChangeState({newState : 2})}>
+          진행중
+        </button>
+        <button onClick={onClickChangeState({newState : 3})}>
+          완료
+        </button>
+      </div>
+      </S.ButtonContent>
+      
     </S.Wrapper>
   );
 };
@@ -30,7 +63,7 @@ const Wrapper = styled.div`
   margin: 16px 0;
   border-radius: 8px;
   background-color: ${({ state, theme }) =>
-    state ? theme.colors.Gray[1] : theme.colors.white};
+    state === 3 ? theme.colors.Gray[1] : theme.colors.white};
 `;
 
 const Header = styled.div`
@@ -43,11 +76,18 @@ const Header = styled.div`
 
 const Content = styled.div`
   padding: 16px;
-  text-decoration: ${({ state }) => (state ? "line-through" : "none")};
+  text-decoration: ${({ state }) => (state === 3 ? "line-through" : "none")};
+`;
+
+const ButtonContent = styled.div`
+  // 버튼 사이 띄우는 css 어떻게 줄까요? ㅠ?
+  display: flex;
+  justify-content: center;
 `;
 
 const S = {
   Wrapper,
   Header,
   Content,
+  ButtonContent
 };

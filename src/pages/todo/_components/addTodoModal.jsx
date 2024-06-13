@@ -14,7 +14,7 @@ const AddTodoModal = ({todos, setTodos, setIsOpenAddTodoModal}) => {
       id: uuid(),
       title : event.target.title.value,
       content: event.target.content.value,
-      state : false
+      state : 1
     }
     setTodos([...todos, newTodo]);
 

@@ -6,22 +6,30 @@ import TodoList from "./_components/todoList";
 import { useState } from "react";
 
 const Todo = () => {
-  // let isOpenAddTodoModal = false;
+  
   const [isOpenAddTodoModal, setIsOpenAddTodoModal] = useState(false);
   const [todos, setTodos] = useState([
     {
       id: 1,
       title: "example-1",
       content: "example-1",
-      state: true,
+      state: 1, // 시작전
     },
     {
       id: 2,
       title: "example-2",
       content: "example-2",
-      state: false,
+      state: 2, // 진행중
     },
+    {
+      id: 3,
+      title : "example-3",
+      content: "example-3",
+      state : 3 // 완료
+    }
   ]);
+
+ 
 
   return (
     <>

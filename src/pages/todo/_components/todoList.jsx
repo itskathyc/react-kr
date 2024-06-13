@@ -1,23 +1,21 @@
 import styled from "styled-components";
-import TodoItem from "./_todoItem";
+import TodoItem from "./todoItem";
 
 const TodoList = ({ todos, setTodos }) => {
 
-  const onClickDeleteTodo = ({todoId}) => {
-    console.log("어떤거 삭제하는데 : ", todoId)
-
-    const deletedTodoList = todos.filter((todo)=>
+  function deleteTodo({todoId}){
+    const deletedTodo = todos.filter((todo)=> 
       todo.id !== todoId
-    );
-    setTodos(deletedTodoList);
+    )
+    setTodos(deletedTodo);
   }
 
   return (
     <S.Wrapper>
       {todos.map((todo) => (
         <TodoItem todo={todo} 
-        setTodos={setTodos}
-        onClickDeleteTodo={onClickDeleteTodo}/>
+        deleteTodo = {deleteTodo}
+        />
       ))}
     </S.Wrapper>
   );
