@@ -4,36 +4,32 @@ import TDButton from "../../../components/Button";
 import { v4 as uuid } from "uuid";
 
 // props로 함수도 전달가능
-const AddTodoModal = ({todos, setTodos, setIsOpenAddTodoModal}) => {
-  
+const AddTodoModal = ({ setIsOpenAddTodoModal, todos, setTodos }) => {
   const onPressAddTodo = (event) => {
-    event.preventDefault();
-
-    //1. todolist에 값 추가
+    event.preventDefault(); // 이걸안하면 주소에 ?가 생기면서 주소를 이동시켜버림
+    // setTodos를 통해 todos에 값을 추가해준다.
     const newTodo = {
       id: uuid(),
-      title : event.target.title.value,
+      title: event.target.title.value,
       content: event.target.content.value,
-      state : 1
-    }
+      state: false,
+    };
     setTodos([...todos, newTodo]);
-
-    //2. 모달창 닫기
     setIsOpenAddTodoModal(false);
-  }
+  };
 
   return (
     <S.Modal>
       <S.Form onSubmit={onPressAddTodo}>
         <S.Title>
           <h1>ADD TODO LIST</h1>
-          <button type="button" onClick={()=>setIsOpenAddTodoModal(false)}>
+          <button type="button" onClick={() => setIsOpenAddTodoModal(false)}>
             x
           </button>
         </S.Title>
         <S.Content>
           <input name="title" placeholder="제목을 입력해주세요" />
-          <textarea  name="content" placeholder="할 일을 입력해주세요" />
+          <textarea name="content" placeholder="할 일을 입력해주세요" />
         </S.Content>
         <TDButton variant={"primary"} size={"full"}>
           ADD
