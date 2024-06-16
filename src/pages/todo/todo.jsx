@@ -12,19 +12,19 @@ const Todo = () => {
       id: 1,
       title: "example-1",
       content: "example-1",
-      state: 1, // 시작전
+      state: 0, // 시작전
     },
     {
       id: 2,
       title: "example-2",
       content: "example-2",
-      state: 2, // 진행중
+      state: 1, // 진행중
     },
     {
       id: 3,
       title: "example-3",
       content: "example-3",
-      state: 3, // 완료
+      state: 2, // 완료
     },
   ]);
 

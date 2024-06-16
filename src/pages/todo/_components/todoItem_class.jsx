@@ -44,12 +44,11 @@ const TodoItem = ({ todo, deleteTodo, updateTodo }) => {
     }
   }
 
-  const [todoState, setTodoState] = useState(0);
+  const [currentState, setCurrentState] = useState(0);
 
   function onClickChangeState({ newState }) {
-    // todo.state를 newState로 바꿔라. 
-    console.log("새로운 스테이트 : ", newState)
-    stateTitle({newState});
+    console.log("currentState를 이걸로 바꿔볼게요", newState)
+    setCurrentState(newState);
   }
 
   function onClickDeleteTodo() {
@@ -57,10 +56,10 @@ const TodoItem = ({ todo, deleteTodo, updateTodo }) => {
   }
 
   return (
-    <S.Wrapper state={todo.state} >
+    <S.Wrapper state={currentState} >
       <S.Header>
         <div>
-          {stateTitle({ stateTitle: todo.state })}
+          {stateTitle({ stateTitle: currentState})}
           {todo.title}
         </div>
         <div>
@@ -74,13 +73,13 @@ const TodoItem = ({ todo, deleteTodo, updateTodo }) => {
       {isEditMode ? (
         <textarea ref={contentRef} defaultValue={todo.content}></textarea>
       ) : (
-        <S.Content state={todo.state}>{todo.content}</S.Content>
+        <S.Content state={currentState}>{todo.content}</S.Content>
       )}
       <S.ButtonContent>
         <div>
-          <button onClick={() => onClickChangeState({ newState: 1 })}>시작전</button>
-          <button onClick={() => onClickChangeState({ newState: 2 })}>진행중</button>
-          <button onClick={() => onClickChangeState({ newState: 3 })}>완료</button>
+          <button onClick={() => onClickChangeState({ newState: 0 })}>시작전</button>
+          <button onClick={() => onClickChangeState({ newState: 1 })}>진행중</button>
+          <button onClick={() => onClickChangeState({ newState: 2 })}>완료</button>
         </div>
       </S.ButtonContent>
     </S.Wrapper>

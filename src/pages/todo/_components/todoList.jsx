@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import TodoItem from "./todoItem";
+import TodoItem from "./todoItem_class";
 
 const TodoList = ({ todos, setTodos }) => {
   function deleteTodo(todoId) {
