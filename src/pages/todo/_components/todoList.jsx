@@ -1,26 +1,17 @@
 import styled from "styled-components";
 import TodoItem from "./todoItem";
+import { useTodo } from "../../../store/todo.store";
 
-const TodoList = ({ todos, setTodos }) => {
-  function deleteTodo(todoId) {
-    const deletedTodo = todos.filter((todo) => todo.id !== todoId);
-    setTodos(deletedTodo);
+const TodoList = () => {
+  const { todos, setTodos } = useTodo();
+  {
+    console.log("1.", todos);
   }
-
-  function updateTodo({ todoId, content }) {
-    const temp_todos = [...todos];
-    let selectTodoIndex = temp_todos.findIndex((todo) => todo.id === todoId);
-    temp_todos[selectTodoIndex] = {
-      ...temp_todos[selectTodoIndex],
-      content,
-    };
-    setTodos(temp_todos);
-  }
-
   return (
     <S.Wrapper>
+      {console.log(todos)}
       {todos.map((todo) => (
-        <TodoItem todo={todo} deleteTodo={deleteTodo} updateTodo={updateTodo} />
+        <TodoItem todo={todo} />
       ))}
     </S.Wrapper>
   );

@@ -4,29 +4,11 @@ import TDButton from "../../components/Button";
 import AddTodoModal from "./_components/addTodoModal";
 import TodoList from "./_components/todoList";
 import { useState } from "react";
+import { useTodo } from "../../store/todo.store";
 
 const Todo = () => {
   const [isOpenAddTodoModal, setIsOpenAddTodoModal] = useState(false);
-  const [todos, setTodos] = useState([
-    {
-      id: 1,
-      title: "example-1",
-      content: "example-1",
-      state: 1, // 시작전
-    },
-    {
-      id: 2,
-      title: "example-2",
-      content: "example-2",
-      state: 2, // 진행중
-    },
-    {
-      id: 3,
-      title: "example-3",
-      content: "example-3",
-      state: 3, // 완료
-    },
-  ]);
+  const { todos, setTodos } = useTodo();
 
   return (
     <>
@@ -40,7 +22,7 @@ const Todo = () => {
       <S.Wrapper>
         <S.Container>
           <S.Title>TODOLIST</S.Title>
-          <TodoList todos={todos} setTodos={setTodos} />
+          <TodoList />
           <TDButton
             size={"full"}
             variant={"primary"}

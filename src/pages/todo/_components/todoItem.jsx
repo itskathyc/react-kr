@@ -3,8 +3,13 @@
 import { flexAlignCenter } from "../../../libs/styles/common";
 import styled, { css } from "styled-components";
 import { useState, useRef } from "react";
+import { useTodo } from "../../../store/todo.store";
 
-const TodoItem = ({ todo, deleteTodo, updateTodo }) => {
+const TodoItem = ({ todo }) => {
+  const { todos, setTodos } = useTodo();
+
+  function updateTodo({ todoId, content }) {}
+
   // 상태 최적화를 위한 컴포넌트 분리 - 각각의 todoItem별 상태를 만듦
   // 상태최적화란 : 불필요한 리렌더링을 하지 않도록 최적화
   const [isEditMode, setIsEditMode] = useState(false);
@@ -29,11 +34,19 @@ const TodoItem = ({ todo, deleteTodo, updateTodo }) => {
     setIsEditMode(false);
     // const temp_todos = [...todos]
     // setTodos(temp_todos) => 새로운 값이 들어와야 다른 주소값을 인식해서 리랜더링한다.
-    updateTodo({ todoId: todo.id, content: contentRef.current.value });
+
+    const todoId = todo.id;
+    const content = contentRef.current.value;
+    const temp_todos = [...todos];
+    let selectTodoIndex = temp_todos.findIndex((todo) => todo.id === todoId);
+    temp_todos[selectTodoIndex] = {
+      ...temp_todos[selectTodoIndex],
+      content,
+    };
+    setTodos(temp_todos);
   }
 
   function initialState({ initialState }) {
-    console.log(initialState);
     switch (initialState) {
       case 1:
         return "[시작전]";
@@ -47,11 +60,13 @@ const TodoItem = ({ todo, deleteTodo, updateTodo }) => {
   }
 
   function onClickChangeState({ newState }) {
-    console.log(newState);
+    console.log("넘어오는값", newState);
   }
 
   function onClickDeleteTodo() {
-    deleteTodo(todo.id);
+    const todoId = todo.id;
+    const deletedTodo = todos.filter((todo) => todo.id !== todoId);
+    setTodos(deletedTodo);
   }
 
   return (

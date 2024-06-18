@@ -2,38 +2,40 @@ import { styled } from "styled-components";
 import { flexAlignCenter, flexCenter } from "../../../libs/styles/common";
 import TDButton from "../../../components/Button";
 import { v4 as uuid } from "uuid";
+import { useTodo } from "../../../store/todo.store";
 
 // props로 함수도 전달가능
-const AddTodoModal = ({todos, setTodos, setIsOpenAddTodoModal}) => {
-  
+const AddTodoModal = ({ setIsOpenAddTodoModal }) => {
+  const { todos, setTodos } = useTodo();
+
   const onPressAddTodo = (event) => {
     event.preventDefault();
 
     //1. todolist에 값 추가
     const newTodo = {
       id: uuid(),
-      title : event.target.title.value,
+      title: event.target.title.value,
       content: event.target.content.value,
-      state : 1
-    }
+      state: 1,
+    };
     setTodos([...todos, newTodo]);
 
     //2. 모달창 닫기
     setIsOpenAddTodoModal(false);
-  }
+  };
 
   return (
     <S.Modal>
       <S.Form onSubmit={onPressAddTodo}>
         <S.Title>
           <h1>ADD TODO LIST</h1>
-          <button type="button" onClick={()=>setIsOpenAddTodoModal(false)}>
+          <button type="button" onClick={() => setIsOpenAddTodoModal(false)}>
             x
           </button>
         </S.Title>
         <S.Content>
           <input name="title" placeholder="제목을 입력해주세요" />
-          <textarea  name="content" placeholder="할 일을 입력해주세요" />
+          <textarea name="content" placeholder="할 일을 입력해주세요" />
         </S.Content>
         <TDButton variant={"primary"} size={"full"}>
           ADD
