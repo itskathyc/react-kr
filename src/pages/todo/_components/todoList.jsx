@@ -4,9 +4,6 @@ import { useTodo } from "../../../store/todo.store";
 
 const TodoList = () => {
   const { todos, setTodos } = useTodo();
-  {
-    console.log("1.", todos);
-  }
   return (
     <S.Wrapper>
       {console.log(todos)}

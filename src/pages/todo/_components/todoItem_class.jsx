@@ -3,13 +3,8 @@
 import { flexAlignCenter } from "../../../libs/styles/common";
 import styled, { css } from "styled-components";
 import { useState, useRef } from "react";
-import { useTodo } from "../../../store/todo.store";
 
-const TodoItem = ({ todo }) => {
-  const { todos, setTodos } = useTodo();
-
-  function updateTodo({ todoId, content }) {}
-
+const TodoItem = ({ todo, deleteTodo, updateTodo }) => {
   // 상태 최적화를 위한 컴포넌트 분리 - 각각의 todoItem별 상태를 만듦
   // 상태최적화란 : 불필요한 리렌더링을 하지 않도록 최적화
   const [isEditMode, setIsEditMode] = useState(false);
@@ -32,19 +27,11 @@ const TodoItem = ({ todo }) => {
     setIsEditMode(false);
     // const temp_todos = [...todos]
     // setTodos(temp_todos) => 새로운 값이 들어와야 다른 주소값을 인식해서 리랜더링한다.
-
-    const todoId = todo.id;
-    const content = contentRef.current.value;
-    const temp_todos = [...todos];
-    let selectTodoIndex = temp_todos.findIndex((todo) => todo.id === todoId);
-    temp_todos[selectTodoIndex] = {
-      ...temp_todos[selectTodoIndex],
-      content,
-    };
-    setTodos(temp_todos);
+    updateTodo({ todoId: todo.id, content: contentRef.current.value });
   }
 
   function stateTitle({ stateTitle }) {
+    console.log('stateTitle : ',stateTitle)
     switch (stateTitle) {
       case 0:
         return "[시작전]";
@@ -57,23 +44,22 @@ const TodoItem = ({ todo }) => {
     }
   }
 
+  const [currentState, setCurrentState] = useState(0);
+
   function onClickChangeState({ newState }) {
-    // todo.state를 newState로 바꿔라.
-    console.log("새로운 스테이트 : ", newState);
-    stateTitle({ newState });
+    console.log("currentState를 이걸로 바꿔볼게요", newState)
+    setCurrentState(newState);
   }
 
   function onClickDeleteTodo() {
-    const todoId = todo.id;
-    const deletedTodo = todos.filter((todo) => todo.id !== todoId);
-    setTodos(deletedTodo);
+    deleteTodo(todo.id);
   }
 
   return (
-    <S.Wrapper state={todo.state}>
+    <S.Wrapper state={currentState} >
       <S.Header>
         <div>
-          {stateTitle({ stateTitle: todo.state })}
+          {stateTitle({ stateTitle: currentState})}
           {todo.title}
         </div>
         <div>
@@ -87,19 +73,13 @@ const TodoItem = ({ todo }) => {
       {isEditMode ? (
         <textarea ref={contentRef} defaultValue={todo.content}></textarea>
       ) : (
-        <S.Content state={todo.state}>{todo.content}</S.Content>
+        <S.Content state={currentState}>{todo.content}</S.Content>
       )}
       <S.ButtonContent>
         <div>
-          <button onClick={() => onClickChangeState({ newState: 1 })}>
-            시작전
-          </button>
-          <button onClick={() => onClickChangeState({ newState: 2 })}>
-            진행중
-          </button>
-          <button onClick={() => onClickChangeState({ newState: 3 })}>
-            완료
-          </button>
+          <button onClick={() => onClickChangeState({ newState: 0 })}>시작전</button>
+          <button onClick={() => onClickChangeState({ newState: 1 })}>진행중</button>
+          <button onClick={() => onClickChangeState({ newState: 2 })}>완료</button>
         </div>
       </S.ButtonContent>
     </S.Wrapper>
